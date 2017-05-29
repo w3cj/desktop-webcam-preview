@@ -16,6 +16,7 @@ video {
   height: auto;
   /* http://ronallo.com/blog/styling-html5-video-with-css/ */
   opacity: 0.8;
+  transform: rotateY(180deg);
 }
 
 #controls {
@@ -30,8 +31,4 @@ video {
 
 #controls:hover {
   opacity: 1;
-}
-
-input[type="range"] {
-  margin-right: 1em;
 }

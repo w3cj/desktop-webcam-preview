@@ -1,11 +1,50 @@
 // https://davidwalsh.name/browser-camera
+const remote = require('electron').remote;
+const BrowserWindow = remote.BrowserWindow;
+const path = require('path')
+const url = require('url')
 
-// Grab elements, create settings, etc.
 var video = document.getElementById('video');
+var cameraSelect = document.getElementById('cameraSelect');
+var selectedId = null;
 
-// Get access to the camera!
-if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+cameraSelect.addEventListener('change', () => {
+  selectCamera(cameraSelect.value);
+});
+
+// https://github.com/webrtc/samples/blob/gh-pages/src/content/devices/input-output/js/main.js#L55
+navigator
+  .mediaDevices
+  .enumerateDevices()
+  .then(function(deviceInfos) {
+    deviceInfos.forEach(device => {
+      if(device.kind == 'videoinput') {
+        const option = document.createElement('option');
+        option.value = device.deviceId;
+        option.textContent = device.label;
+        cameraSelect.appendChild(option);
+        if(!selectedId) {
+          selectedId = device.deviceId;
+          selectCamera(selectedId);
+        }
+      }
+    });
+  });
+
+function selectCamera(deviceId) {
+  navigator
+    .mediaDevices
+    .getUserMedia({
+      video: {
+        deviceId: {
+          exact: deviceId
+        },
+        // https://webrtchacks.com/getusermedia-resolutions-3/
+        width: {
+          exact: 1280
+        }
+      }
+    }).then(function(stream) {
         video.src = window.URL.createObjectURL(stream);
         video.play();
     });
@@ -34,4 +73,25 @@ flipHorizontalButton.addEventListener('click', () => {
   } else {
     video.style.transform += ' rotateY(180deg)';
   }
+});
+
+var newCameraButton = document.getElementById('newCameraButton');
+
+newCameraButton.addEventListener('click', () => {
+  var win = new BrowserWindow({
+    width: 1280,
+    height: 720,
+    alwaysOnTop: true,
+    transparent: true,
+    toolbar: false,
+    frame: false
+  });
+
+  win.setAspectRatio(16/9);
+
+  win.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
 });

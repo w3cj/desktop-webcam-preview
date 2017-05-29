@@ -10,21 +10,31 @@
   <body style="-webkit-app-region: drag">
     <video id="video" autoplay></video>
     <section id="controls">
+      <select class="browser-default" id="cameraSelect">
+      </select>
       <input id="opacityRange" type="range" name="opacity" value="0.8" min="0.1" max="1" step="0.1" class="range-field">
-      <button
-        id="flipVerticalButton"
-        type="button"
-        name="button"
-        class="btn-floating waves-effect waves-light">
-        <i class="material-icons">swap_vertical_circle</i>
-      </button>
-      <button
-        id="flipHorizontalButton"
-        type="button"
-        name="button"
-        class="waves-effect waves-light btn-floating">
-        <i class="material-icons">swap_horiz</i>
-      </button>
+      <div class="right">
+        <button
+          id="flipVerticalButton"
+          type="button"
+          name="button"
+          class="btn-floating waves-effect waves-light">
+          <i class="material-icons">swap_vertical_circle</i>
+        </button>
+        <button
+          id="flipHorizontalButton"
+          type="button"
+          name="button"
+          class="waves-effect waves-light btn-floating">
+          <i class="material-icons">swap_horiz</i>
+        </button>
+        <button
+          id="newCameraButton"
+          type="button"
+          class="btn-floating waves-effect waves-light">
+          <i class="material-icons">add</i>
+        </button>
+      </div>
     </section>
     <script src="webcam.js" charset="utf-8"></script>
   </body>

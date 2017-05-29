@@ -27,18 +27,18 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-  
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     alwaysOnTop: true,
     transparent: true,
     toolbar: false,
     frame: false
   })
 
-  mainWindow.setAspectRatio(4/3);
+  mainWindow.setAspectRatio(16/9);
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
