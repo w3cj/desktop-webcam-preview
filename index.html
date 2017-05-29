@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body>
+    <video id="video" autoplay></video>
+    <section id="controls">
+      <input id="opacityRange" type="range" name="opacity" value="0.5" min="0.1" max="1" step="0.1">
+      <button id="flipButton" type="button" name="button">Flip</button>
+    </section>
+    <script src="webcam.js" charset="utf-8"></script>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>

@@ -1,0 +1,25 @@
+/* https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/ */
+
+body {
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0);
+}
+
+/* https://www.iandevlin.com/blog/2012/08/html5/responsive-html5-video */
+
+video {
+  width: 100%;
+  height: auto;
+  /* http://ronallo.com/blog/styling-html5-video-with-css/ */
+  opacity: 0.7;
+}
+
+#controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
