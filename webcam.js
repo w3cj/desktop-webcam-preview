@@ -17,12 +17,21 @@ range.addEventListener('change', () => {
   video.style.opacity = range.value;
 });
 
-var flipButton =  document.getElementById('flipButton');
+var flipVerticalButton =  document.getElementById('flipVerticalButton');
+var flipHorizontalButton =  document.getElementById('flipHorizontalButton');
 
-flipButton.addEventListener('click', () => {
-  if(video.style.transform) {
-    video.style.transform = '';
-  } else {    
-    video.style.transform = 'rotate(180deg)';
+flipVerticalButton.addEventListener('click', () => {
+  if(video.style.transform.includes('rotateX')) {
+    video.style.transform = video.style.transform.replace('rotateX(180deg)', '');
+  } else {
+    video.style.transform += ' rotateX(180deg)';
+  }
+});
+
+flipHorizontalButton.addEventListener('click', () => {
+  if(video.style.transform.includes('rotateY')) {
+    video.style.transform = video.style.transform.replace('rotateY(180deg)', '');
+  } else {
+    video.style.transform += ' rotateY(180deg)';
   }
 });

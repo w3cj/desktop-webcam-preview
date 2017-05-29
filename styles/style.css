@@ -15,11 +15,23 @@ video {
   width: 100%;
   height: auto;
   /* http://ronallo.com/blog/styling-html5-video-with-css/ */
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 #controls {
   position: absolute;
   top: 0;
   left: 0;
+  opacity: 0;
+  /*display: flex;*/
+  padding: 1em;
+  width: 100%;
+}
+
+#controls:hover {
+  opacity: 1;
+}
+
+input[type="range"] {
+  margin-right: 1em;
 }
