@@ -10,24 +10,8 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-let chatWindow
 
 function createWindow () {
-  chatWindow = new BrowserWindow({
-    width: 300,
-    height: 600,
-    alwaysOnTop: true,
-    transparent: true,
-    frame: false
-  })
-
-  // and load the index.html of the app.
-  chatWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'chat.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1280,

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body style="-webkit-app-region: drag">
-    <video id="video" autoplay></video>
+    <video id="video" style="transform: rotateY(180deg);" autoplay></video>
     <section id="controls">
       <select class="browser-default" id="cameraSelect">
       </select>
@@ -18,21 +18,27 @@
           id="flipVerticalButton"
           type="button"
           name="button"
-          class="btn-floating waves-effect waves-light">
+          class="btn-floating waves-effect waves-light purple">
           <i class="material-icons">swap_vertical_circle</i>
         </button>
         <button
           id="flipHorizontalButton"
           type="button"
           name="button"
-          class="waves-effect waves-light btn-floating">
+          class="waves-effect waves-light btn-floating orange">
           <i class="material-icons">swap_horiz</i>
         </button>
         <button
           id="newCameraButton"
           type="button"
-          class="btn-floating waves-effect waves-light">
+          class="btn-floating waves-effect waves-light green">
           <i class="material-icons">add</i>
+        </button>
+        <button
+          id="commentButton"
+          type="button"
+          class="btn-floating waves-effect waves-light blue">
+          <i class="material-icons">comment</i>
         </button>
       </div>
     </section>
