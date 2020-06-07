@@ -11,7 +11,7 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1280,
@@ -19,10 +19,14 @@ function createWindow () {
     alwaysOnTop: true,
     transparent: true,
     toolbar: false,
-    frame: false
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
   })
 
-  mainWindow.setAspectRatio(16/9);
+  mainWindow.setAspectRatio(16 / 9);
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

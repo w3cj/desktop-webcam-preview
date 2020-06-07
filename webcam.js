@@ -16,14 +16,14 @@ cameraSelect.addEventListener('change', () => {
 navigator
   .mediaDevices
   .enumerateDevices()
-  .then(function(deviceInfos) {
+  .then(function (deviceInfos) {
     deviceInfos.forEach(device => {
-      if(device.kind == 'videoinput') {
+      if (device.kind == 'videoinput') {
         const option = document.createElement('option');
         option.value = device.deviceId;
         option.textContent = device.label;
         cameraSelect.appendChild(option);
-        if(!selectedId) {
+        if (!selectedId) {
           selectedId = device.deviceId;
           selectCamera(selectedId);
         }
@@ -44,9 +44,10 @@ function selectCamera(deviceId) {
           exact: 1280
         }
       }
-    }).then(function(stream) {
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
+    }).then(function (stream) {
+      // video.src = window.URL.createObjectURL(stream);
+      video.srcObject = stream;
+      video.play();
     });
 }
 
@@ -56,11 +57,11 @@ range.addEventListener('change', () => {
   video.style.opacity = range.value;
 });
 
-var flipVerticalButton =  document.getElementById('flipVerticalButton');
-var flipHorizontalButton =  document.getElementById('flipHorizontalButton');
+var flipVerticalButton = document.getElementById('flipVerticalButton');
+var flipHorizontalButton = document.getElementById('flipHorizontalButton');
 
 flipVerticalButton.addEventListener('click', () => {
-  if(video.style.transform.includes('rotateX')) {
+  if (video.style.transform.includes('rotateX')) {
     video.style.transform = video.style.transform.replace('rotateX(180deg)', '');
   } else {
     video.style.transform += ' rotateX(180deg)';
@@ -68,7 +69,7 @@ flipVerticalButton.addEventListener('click', () => {
 });
 
 flipHorizontalButton.addEventListener('click', () => {
-  if(video.style.transform.includes('rotateY')) {
+  if (video.style.transform.includes('rotateY')) {
     video.style.transform = video.style.transform.replace('rotateY(180deg)', '');
   } else {
     video.style.transform += ' rotateY(180deg)';
@@ -84,10 +85,14 @@ newCameraButton.addEventListener('click', () => {
     alwaysOnTop: true,
     transparent: true,
     toolbar: false,
-    frame: false
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
   });
 
-  win.setAspectRatio(16/9);
+  win.setAspectRatio(16 / 9);
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
